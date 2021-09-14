@@ -12,6 +12,7 @@ let rollbar = new Rollbar({
 const students = [];
 const app = express();
 app.use(express.json());
+app.use("/style", express.static("./public/styles.css"));
 
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/index.html"));
@@ -27,7 +28,7 @@ app.post("/api/student", (req, res) => {
 	if (index === -1 && name !== "") {
 		students.push(name);
 		rollbar.log("Student added successfully", {
-			author: "Scott",
+			author: "Jayme",
 			type: "manual entry",
 		});
 		res.status(200).send(students);
